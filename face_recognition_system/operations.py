@@ -102,9 +102,10 @@ def cut_face_ellipse(image, face_coord):
         axis_minor = w / 2
         mask = np.zeros_like(image)
         # create a white filled ellipse
+        print(axis_major, axis_minor, center)
         mask = cv2.ellipse(mask,
-                           center=center,
-                           axes=(axis_major, axis_minor),
+                           center=tuple(map(lambda x: int(x), center)),
+                           axes=(int(axis_major), int(axis_minor)),
                            angle=0,
                            startAngle=0,
                            endAngle=360,
@@ -131,8 +132,8 @@ def draw_face_ellipse(image, faces_coord):
         axis_major = h / 2
         axis_minor = w / 2
         cv2.ellipse(image,
-                    center=center,
-                    axes=(axis_major, axis_minor),
+                    center=tuple(map(lambda x: int(x), center)),
+                    axes=(int(axis_major), int(axis_minor)),
                     angle=0,
                     startAngle=0,
                     endAngle=360,

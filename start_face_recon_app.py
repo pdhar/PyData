@@ -46,10 +46,10 @@ def add_person(people_folder, shape):
     :type people_folder: String
     :type shape: String
     """
-    person_name = raw_input('What is the name of the new person: ').lower()
+    person_name = input('What is the name of the new person: ').lower()
     folder = people_folder + person_name
     if not os.path.exists(folder):
-        raw_input("I will now take 20 pictures. Press ENTER when ready.")
+        input("I will now take 20 pictures. Press ENTER when ready.")
         os.mkdir(folder)
         video = VideoCamera()
         detector = FaceDetector('face_recognition_system/frontal_face.xml')
@@ -68,7 +68,7 @@ def add_person(people_folder, shape):
                 if timer % 100 == 5:
                     cv2.imwrite(folder + '/' + str(counter) + '.jpg',
                                 face_img[0])
-                    print 'Images Saved:' + str(counter)
+                    print( 'Images Saved:' + str(counter))
                     counter += 1
                     cv2.imshow('Saved Face', face_img[0])
 
@@ -76,7 +76,7 @@ def add_person(people_folder, shape):
             cv2.waitKey(50)
             timer += 5
     else:
-        print "This name already exists."
+        print( "This name already exists.")
         sys.exit()
 
 def recognize_people(people_folder, shape):
@@ -91,19 +91,19 @@ def recognize_people(people_folder, shape):
     try:
         people = [person for person in os.listdir(people_folder)]
     except:
-        print "Have you added at least one person to the system?"
+        print( "Have you added at least one person to the system?")
         sys.exit()
-    print "This are the people in the Recognition System:"
+    print( "This are the people in the Recognition System:")
     for person in people:
-        print "-" + person
+        print( "-" + person)
 
-    print 30 * '-'
-    print "   POSSIBLE RECOGNIZERS TO USE"
-    print 30 * '-'
-    print "1. EigenFaces"
-    print "2. FisherFaces"
-    print "3. LBPHFaces"
-    print 30 * '-'
+    print( 30 * '-')
+    print( "   POSSIBLE RECOGNIZERS TO USE")
+    print( 30 * '-')
+    print( "1. EigenFaces")
+    print( "2. FisherFaces")
+    print( "3. LBPHFaces")
+    print( 30 * '-')
 
     choice = check_choice()
 
@@ -128,7 +128,7 @@ def recognize_people(people_folder, shape):
     try:
         recognizer.train(images, np.array(labels))
     except:
-        print "\nOpenCV Error: Do you have at least two people in the database?\n"
+        print( "\nOpenCV Error: Do you have at least two people in the database?\n")
         sys.exit()
 
     video = VideoCamera()
@@ -145,9 +145,9 @@ def recognize_people(people_folder, shape):
                     pred = collector.getLabel()
                 else:
                     pred, conf = recognizer.predict(face_img)
-                print "Prediction: " + str(pred)
-                print 'Confidence: ' + str(round(conf))
-                print 'Threshold: ' + str(threshold)
+                print( "Prediction: " + str(pred))
+                print( 'Confidence: ' + str(round(conf)))
+                print( 'Threshold: ' + str(threshold))
                 if conf < threshold:
                     cv2.putText(frame, labels_people[pred].capitalize(),
                                 (faces_coord[i][0], faces_coord[i][1] - 2),
@@ -171,23 +171,23 @@ def check_choice():
     is_valid = 0
     while not is_valid:
         try:
-            choice = int(raw_input('Enter your choice [1-3] : '))
+            choice = int(input('Enter your choice [1-3] : '))
             if choice in [1, 2, 3]:
                 is_valid = 1
             else:
-                print "'%d' is not an option.\n" % choice
-        except ValueError, error:
-            print "%s is not an option.\n" % str(error).split(": ")[1]
+                print( "'%d' is not an option.\n" % choice)
+        except ValueError as error:
+            print( "%s is not an option.\n" % str(error).split(": ")[1])
     return choice
 
 if __name__ == '__main__':
-    print 30 * '-'
-    print "   POSSIBLE ACTIONS"
-    print 30 * '-'
-    print "1. Add person to the recognizer system"
-    print "2. Start recognizer"
-    print "3. Exit"
-    print 30 * '-'
+    print( 30 * '-')
+    print( "   POSSIBLE ACTIONS")
+    print( 30 * '-')
+    print( "1. Add person to the recognizer system")
+    print( "2. Start recognizer")
+    print( "3. Exit")
+    print( 30 * '-')
 
     CHOICE = check_choice()
 
