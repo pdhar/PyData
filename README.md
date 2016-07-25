@@ -7,6 +7,12 @@ This repository is created with the intention for people who will attend the PyD
 
 https://rivercitylabs.org/up-and-running-with-opencv3-and-python-3-anaconda-edition/
 
+http://stackoverflow.com/questions/30492623/using-both-python-2-x-and-python-3-x-in-ipython-notebook
+
+pip install -r requirements.txt
+
+https://trackingjs.com/docs.html#introduction
+
 <img align="right" width="30%" src="http://www.qualogy.com/wp-content/themes/qua/images/q_logo.png" alt="Qualogy Logo">
 
 This notebook was created for the tutorial during the PyData Meeting:
